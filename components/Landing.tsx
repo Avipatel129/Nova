@@ -14,7 +14,7 @@ export default function Landing() {
       </p>
       <Link href={"/dashboard"}>
         <Button className="center gap-2">
-          <p>Get started</p>
+          <p>Get started Now</p>
           <ArrowRight size={16} />
         </Button>
       </Link>
