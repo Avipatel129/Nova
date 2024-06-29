@@ -5,20 +5,16 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
+import { getTheme } from "@/utils/localStorage";
 
 export function ThemeToggle() {
     const { setTheme } = useTheme();
-    const [mode, setMode] = useState<"dark" | "light">("light");
+
+    const theme = getTheme();
 
     function handleModeToggle() {
-        if (mode === "light") {
-            setTheme("dark");
-            setMode("dark");
-            return;
-        }
-        setTheme(() => "light");
-        setMode("light");
-        return;
+        if (theme === "light") setTheme("dark");
+        if (theme === "dark") setTheme("light");
     }
 
     return (
@@ -27,7 +23,7 @@ export function ThemeToggle() {
             onClick={handleModeToggle}
             className="px-3 rounded-full hover:bg-zinc-200 duration-300 dark:hover:bg-zinc-800"
         >
-            {mode === "light" ? <Sun size={16} /> : <Moon size={16} />}
+            {theme === "light" ? <Sun size={16} /> : <Moon size={16} />}
         </Button>
     );
 }
