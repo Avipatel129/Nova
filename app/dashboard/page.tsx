@@ -3,11 +3,9 @@ import React, { use, useEffect } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
 export default function Dashboard() {
+  const GOOGLE_API_KEY: any = process.env.NEXT_PUBLIC_GOOLGE_API_KEY;
   useEffect(() => {
-    // Access your API key as an environment variable (see "Set up your API key" above)
-    const genAI = new GoogleGenerativeAI(
-      "AIzaSyAlw1WnfkTsaxBCJU53wbXHg3JhRq4M7M0"
-    );
+    const genAI = new GoogleGenerativeAI(GOOGLE_API_KEY);
 
     const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
     async function run() {
