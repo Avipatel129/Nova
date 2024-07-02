@@ -8,22 +8,22 @@ import Navbar from "./Navbar";
 
 export default function Landing() {
   return (
-    <div id="landing-page-cotainer" className="p-4 max-w-5xl w-full mx-auto">
+    <div id="landing-page-cotainer" className="mx-auto w-full max-w-5xl p-4">
       <Navbar />
       <div className="mt-20">
         <div className="center gap-4">
-          <Image src={Nova} alt="Nova" className="w-12 h-12" />
+          <Image src={Nova} alt="Nova" className="h-12 w-12" />
           <h1 className="text-4xl font-semibold">Nova</h1>
         </div>
 
-        <p className="text-lg text-center text-zinc-600 mt-6 dark:text-zinc-300">
+        <p className="mt-6 text-center text-lg text-zinc-600 dark:text-zinc-300">
           Brightening your day with smart conversations
         </p>
         <div className="center my-2">
           <Link
             href={"https://ai.google.dev/"}
             target="_blank"
-            className="bg-rose-100 text-xs rounded-full px-2 text-rose-700 py-1 dark:text-rose-200 dark:bg-zinc-800"
+            className="rounded-full bg-rose-100 px-2 py-1 text-xs text-rose-700 dark:bg-zinc-800 dark:text-rose-200"
           >
             Powered by Google&apos;s Generative AI
           </Link>
@@ -32,16 +32,16 @@ export default function Landing() {
       <div className="my-10 w-full">
         <Link
           href={"/dashboard"}
-          className="center gap-2 bg-rose-500 text-zinc-100 rounded-full p-2 w-44 mx-auto hover:bg-rose-400 duration-300"
+          className="center mx-auto w-44 gap-2 rounded-full bg-rose-500 p-2 text-zinc-100 duration-300 hover:bg-rose-400"
         >
           <p>Get started now</p>
           <ArrowRight size={14} />
         </Link>
       </div>
 
-      <div className="w-full h-96 bg-zinc-200" />
+      <div className="h-96 w-full bg-zinc-200" />
 
-      <h1 className="font-bold text-2xl mt-10 mb-2">About Nova</h1>
+      <h1 className="mb-2 mt-10 text-2xl font-bold">About Nova</h1>
       <p className="dark:text-zinc-400">
         Nova is an AI powered chatbot designed to engage users in meaningful
         conversations using{" "}

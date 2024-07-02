@@ -23,15 +23,15 @@ const navlink = [
 export default function Navbar() {
   return (
     <nav>
-      <div className="center p-4 w-full max-w-5xl mx-auto gap-1">
-        <Image src={Nova} alt={"Nova"} className="w-8 h-8" />
+      <div className="center mx-auto w-full max-w-5xl gap-1 p-4">
+        <Image src={Nova} alt={"Nova"} className="h-8 w-8" />
 
-        <div className="flex-1 center gap-10">
+        <div className="center flex-1 gap-10">
           {navlink.map((link: any) => (
             <Link
               href={link.href}
               key={link.href}
-              className="hover:text-rose-500 duration-300"
+              className="duration-300 hover:text-rose-500"
             >
               {link.title}
             </Link>
@@ -51,7 +51,7 @@ function Authenticator() {
         <SignInButton>
           <Button
             variant="outline"
-            className="hover:bg-zinc-200 duration-300 dark:hover:bg-zinc-800"
+            className="duration-300 hover:bg-zinc-200 dark:hover:bg-zinc-800"
           >
             Sign in
           </Button>
