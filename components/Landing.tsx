@@ -25,7 +25,7 @@ export default function Landing() {
             target="_blank"
             className="bg-rose-100 text-xs rounded-full px-2 text-rose-700 py-1 dark:text-rose-200 dark:bg-zinc-800"
           >
-            Powered by Google's Generative AI
+            Powered by Google&apos;s Generative AI
           </Link>
         </div>
       </div>
@@ -50,7 +50,7 @@ export default function Landing() {
           target="_blank"
           className="text-rose-600 hover:underline dark:text-rose-400"
         >
-          Google's Generative AI API
+          Google&apos;s Generative AI API
         </Link>
         . From answering queries to providing personalized recommendations, Nova
         leverages advanced natural language processing to deliver insightful and

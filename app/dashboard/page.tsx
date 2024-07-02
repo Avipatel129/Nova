@@ -1,6 +1,8 @@
 "use client";
 import React, { use, useEffect } from "react";
 import { GoogleGenerativeAI } from "@google/generative-ai";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "@/firebase";
 
 export default function Dashboard() {
   const GOOGLE_API_KEY: any = process.env.NEXT_PUBLIC_GOOLGE_API_KEY;
@@ -17,7 +19,23 @@ export default function Dashboard() {
       console.log(text);
     }
 
-    run();
+    // run();
   }, []);
-  return <div>Hello from Dashboard </div>;
+
+  const handleSubmit = async (e: any) => {
+    try {
+      await addDoc(collection(db, "user"), {
+        name: "suman",
+        lname: "gurung",
+      });
+    } catch (err) {
+      alert(err);
+    }
+  };
+
+  return (
+    <div>
+      <button>save</button>
+    </div>
+  );
 }
