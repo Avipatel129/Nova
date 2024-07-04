@@ -1,40 +1,76 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { model } from "@/ai";
+import { Button } from "@/components/ui/button";
+import { ArrowUpFromDot } from "lucide-react";
+
+type PromptCollectionType = {
+  prompt: string;
+  response: string;
+};
 
 export default function Dashboard() {
-  const [response, setResponse] = useState<string | null>(null);
-  const [prompt, setPrompt] = useState<string | null>(null);
+  const [prompt, setPrompt] = useState<string>("");
   const [loading, setLoading] = useState<boolean>(false);
   const [error, setError] = useState<boolean>(false);
+  const [promptCollection, setPromptCollection] = useState<
+    PromptCollectionType[]
+  >([]);
+
   const promptRef = useRef<HTMLInputElement | null>(null);
 
   const generateResponse = async () => {
+    if (prompt === "") return;
+
     setLoading(true);
     try {
-      if (promptRef.current) {
-        const result = await model.generateContent(promptRef.current.value);
-        const res = await result.response;
-        const text = res.text();
-        setResponse(text);
-      }
+      const result = await model.generateContent(prompt);
+      const res = result.response;
+      const text = res.text();
+      setPromptCollection((prev) => [
+        ...prev,
+        { prompt: prompt, response: text },
+      ]);
     } catch (err) {
       setError(true);
     } finally {
       setLoading(false);
+      if (promptRef.current) promptRef.current.value = "";
     }
   };
+
+  function handleGenerate() {
+    if (promptRef.current && promptRef.current.value !== "") {
+      setPrompt(promptRef.current.value);
+    }
+  }
+
   useEffect(() => {
-    if (prompt != null) generateResponse();
+    generateResponse();
   }, [prompt]);
 
-  if (loading) return <p>Loading</p>;
-  if (error) return <p>Error</p>;
   return (
-    <div>
-      {response}
-      <input type="text" ref={promptRef} />
-      <button onClick={generateResponse}>Generate</button>
+    <div id="dashboard" className="h-screen p-4">
+      <div>
+        {promptCollection.map((data) => (
+          <div>
+            <p className="font-bold">User: {data.prompt}</p>
+            <p>AI :{data.response}</p>
+          </div>
+        ))}
+      </div>
+
+      <div className="center">
+        <input
+          type="text"
+          ref={promptRef}
+          className="w-full rounded-md rounded-l-full p-2 px-3 outline-none"
+          placeholder="Ask me anything"
+        />
+        <Button onClick={handleGenerate} className="center rounded-r-full">
+          <ArrowUpFromDot size={16} />
+        </Button>
+      </div>
     </div>
   );
 }
