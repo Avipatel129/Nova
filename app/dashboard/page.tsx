@@ -3,8 +3,10 @@ import React, { useEffect, useRef, useState } from "react";
 import { model } from "@/ai";
 import { Button } from "@/components/ui/button";
 import { ArrowUpFromDot } from "lucide-react";
+import { generateUniqueId } from "@/utils/utils";
 
 type PromptCollectionType = {
+  id: string;
   prompt: string;
   response: string;
 };
@@ -29,7 +31,7 @@ export default function Dashboard() {
       const text = res.text();
       setPromptCollection((prev) => [
         ...prev,
-        { prompt: prompt, response: text },
+        { id: generateUniqueId(20), prompt: prompt, response: text },
       ]);
     } catch (err) {
       setError(true);
@@ -53,7 +55,7 @@ export default function Dashboard() {
     <div id="dashboard" className="h-screen p-4">
       <div>
         {promptCollection.map((data) => (
-          <div>
+          <div key={data.id}>
             <p className="font-bold">User: {data.prompt}</p>
             <p>AI :{data.response}</p>
           </div>
