@@ -4,6 +4,7 @@ import { model } from "@/ai";
 import { Button } from "@/components/ui/button";
 import { ArrowUpFromDot } from "lucide-react";
 import { generateUniqueId } from "@/utils/utils";
+import { PuffLoader } from "react-spinners";
 
 type PromptCollectionType = {
   id: string;
@@ -61,6 +62,8 @@ export default function Dashboard() {
           </div>
         ))}
       </div>
+
+      {loading && <PuffLoader />}
 
       <div className="center">
         <input
