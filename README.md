@@ -5,3 +5,7 @@
 <h2 align="left">Link</h2>
 
 <p>Here is my <a href="https://ai-bot-sigma-nine.vercel.app/">Click Here</a></p>
+
+<h3 align="left">Technology Used in this Project</h3>
+
+<p align="left">1. Building and deploying.<br>2. currently learning next.js</p>
