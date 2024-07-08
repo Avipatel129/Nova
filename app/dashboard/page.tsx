@@ -51,25 +51,27 @@ export default function Dashboard() {
 
   return (
     <div id="dashboard" className="h-screen p-4">
-      <div>
-        {promptCollection.map((data) => (
-          <div>
-            <p className="font-bold">User: {data.prompt}</p>
-            <p>AI :{data.response}</p>
-          </div>
-        ))}
-      </div>
+      <div className="relative mx-auto h-full w-full max-w-5xl">
+        <div>
+          {promptCollection.map((data) => (
+            <div>
+              <p className="font-bold">User: {data.prompt}</p>
+              <p>AI :{data.response}</p>
+            </div>
+          ))}
+        </div>
 
-      <div className="center">
-        <input
-          type="text"
-          ref={promptRef}
-          className="w-full rounded-md rounded-l-full p-2 px-3 outline-none"
-          placeholder="Ask me anything"
-        />
-        <Button onClick={handleGenerate} className="center rounded-r-full">
-          <ArrowUpFromDot size={16} />
-        </Button>
+        <div className="center absolute bottom-0 w-full">
+          <input
+            type="text"
+            ref={promptRef}
+            className="w-full rounded-md rounded-l-full p-2 px-3 outline-none"
+            placeholder="Ask me anything"
+          />
+          <Button onClick={handleGenerate} className="center rounded-r-full">
+            <ArrowUpFromDot size={16} />
+          </Button>
+        </div>
       </div>
     </div>
   );
