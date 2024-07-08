@@ -3,8 +3,13 @@ import React, { useEffect, useRef, useState } from "react";
 import { model } from "@/ai";
 import { Button } from "@/components/ui/button";
 import { ArrowUpFromDot } from "lucide-react";
+import { generateUniqueId } from "@/utils/utils";
+import { PuffLoader } from "react-spinners";
+import Markdown from "react-markdown";
+import rehypeHighlight from "rehype-highlight";
 
 type PromptCollectionType = {
+  id: string;
   prompt: string;
   response: string;
 };
@@ -29,7 +34,7 @@ export default function Dashboard() {
       const text = res.text();
       setPromptCollection((prev) => [
         ...prev,
-        { prompt: prompt, response: text },
+        { id: generateUniqueId(20), prompt: prompt, response: text },
       ]);
     } catch (err) {
       setError(true);
@@ -50,18 +55,22 @@ export default function Dashboard() {
   }, [prompt]);
 
   return (
-    <div id="dashboard" className="h-screen p-4">
-      <div className="relative mx-auto h-full w-full max-w-5xl">
-        <div>
-          {promptCollection.map((data) => (
-            <div>
-              <p className="font-bold">User: {data.prompt}</p>
-              <p>AI :{data.response}</p>
-            </div>
-          ))}
+    <div id="dashboard" className="h-screen px-4">
+      <div className="mx-auto h-full w-full max-w-5xl">
+        <div className="h-[90vh] overflow-y-scroll">
+          <div>
+            {promptCollection.map((data) => (
+              <div>
+                <p className="font-bold">User: {data.prompt}</p>
+                <Markdown>{data.response}</Markdown>
+              </div>
+            ))}
+          </div>
+
+          {loading && <PuffLoader />}
         </div>
 
-        <div className="center absolute bottom-0 w-full">
+        <div className="center h-[10vh]">
           <input
             type="text"
             ref={promptRef}
