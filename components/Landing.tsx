@@ -2,13 +2,15 @@ import React from "react";
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-
 import Nova from "@/assets/Nova.png";
 import Navbar from "./Navbar";
 
 export default function Landing() {
   return (
-    <div id="landing-page-cotainer" className="mx-auto w-full max-w-5xl p-4">
+    <div
+      id="landing-page-cotainer"
+      className="mx-auto w-full max-w-5xl p-4 pt-0"
+    >
       <Navbar />
       <div className="mt-20">
         <div className="center gap-4">
@@ -19,7 +21,7 @@ export default function Landing() {
         <p className="mt-6 text-center text-lg text-zinc-600 dark:text-zinc-300">
           Brightening your day with smart conversations
         </p>
-        <div className="center my-2">
+        <div className="center my-6">
           <Link
             href={"https://ai.google.dev/"}
             target="_blank"
@@ -39,7 +41,7 @@ export default function Landing() {
         </Link>
       </div>
 
-      <div className="h-96 w-full bg-zinc-200" />
+      {/* <div className="h-96 w-full bg-zinc-200" /> */}
 
       <h1 className="mb-2 mt-10 text-2xl font-bold">About Nova</h1>
       <p className="dark:text-zinc-400">
