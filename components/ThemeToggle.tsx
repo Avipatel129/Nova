@@ -1,14 +1,20 @@
 "use client";
-
-import { useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 import { Button } from "@/components/ui/button";
 import { getTheme } from "@/utils/localStorage";
+import { useEffect, useState } from "react";
 
 export function ThemeToggle() {
   const { setTheme } = useTheme();
+
+  // to prevent hydration error
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
 
   const theme = getTheme();
 
@@ -16,6 +22,8 @@ export function ThemeToggle() {
     if (theme === "light") setTheme("dark");
     if (theme === "dark") setTheme("light");
   }
+
+  if (!mounted) return null;
 
   return (
     <Button

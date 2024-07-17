@@ -4,15 +4,8 @@ import React from "react";
 import Nova from "@/assets/Nova.png";
 import Image from "next/image";
 import Link from "next/link";
-import {
-  SignInButton,
-  SignedIn,
-  SignedOut,
-  UserButton,
-  useUser,
-} from "@clerk/nextjs";
+import { SignedIn, UserButton, useUser } from "@clerk/nextjs";
 import { ThemeToggle } from "./ThemeToggle";
-import { Button } from "./ui/button";
 
 const navlink = [
   {
@@ -21,11 +14,11 @@ const navlink = [
   },
   {
     title: "API Reference",
-    href: "#",
+    href: "#reference",
   },
   {
     title: "Code",
-    href: "#",
+    href: "#code",
   },
 ];
 export default function Navbar() {
